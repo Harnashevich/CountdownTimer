@@ -15,7 +15,7 @@ enum AppTheme {
         static let lightBlue = UIColor(red: 65/250, green: 69/250, blue: 152/250, alpha: 1.0)
         static let pink = UIColor(red: 234/250, green: 72/250, blue: 187/250, alpha: 1.0)
         static let gray = UIColor(red: 86/250, green: 86/250, blue: 86/250, alpha: 1.0)
-        static let lightGray = UIColor(red: 190/250, green: 190/250, blue: 190/250, alpha: 1.0)
+        static let lightGray = UIColor(red: 175/250, green: 175/250, blue: 175/250, alpha: 1.0)
         static let white = UIColor(red: 250/250, green: 250/250, blue: 250/250, alpha: 1.0)
         
     }

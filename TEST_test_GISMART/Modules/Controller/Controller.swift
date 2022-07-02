@@ -11,44 +11,53 @@ class Controller: UIViewController {
     
     //MARK: - UI
     
-    private lazy var form:  MainView = {
-        let form = MainView()
-        form.translatesAutoresizingMaskIntoConstraints = false
-        return form
-    }()
-
-    private func addViews() {
-        
-    }
-
-    private func addConstraints() {
-        
-    }
+    private lazy var mainView = createMainView()
     
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addViews()
+        addConstraints()
     }
 }
 
-//MARK: - ViewController private func
+//MARK: - Controller private func
 
 extension Controller {
     
+    private func createMainView() -> UIView {
+        let mainView = MainView()
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        mainView.didTapActivateButton = {
+            print("КНОПКА")
+            self.showAlert()
+        }
+        return mainView
+    }
     
     private func configureUI() {
-        view.addSubview(form)
-       
         view.backgroundColor = .systemPink
+    }
+    
+    private func addViews() {
+        view.addSubview(mainView)
+    }
+    
+    private func addConstraints() {
         NSLayoutConstraint.activate([
-            form.topAnchor.constraint(equalTo: view.topAnchor),
-            form.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            form.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            form.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mainView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
+    private func showAlert() {
+        let customAlert = AlertView()
+         customAlert.showAlert(with: "Great!",
+                               message: "Offer acritated at 00:00",
+                               on: self)
+    }
 }
-

@@ -25,4 +25,12 @@ extension UIView {
         layer.shadowRadius = shadowRadius
         layer.masksToBounds = false
     }
+    
+    func fadeTransition() {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.reveal
+        animation.duration = 0.5
+        layer.add(animation, forKey: CATransitionType.reveal.rawValue)
+    }
 }
