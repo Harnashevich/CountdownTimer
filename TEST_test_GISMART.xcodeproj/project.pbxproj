@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		7E375AE6286F898F00BA8EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375AE5286F898F00BA8EF9 /* AppDelegate.swift */; };
 		7E375AE8286F898F00BA8EF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375AE7286F898F00BA8EF9 /* SceneDelegate.swift */; };
-		7E375AEA286F898F00BA8EF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375AE9286F898F00BA8EF9 /* ViewController.swift */; };
+		7E375AEA286F898F00BA8EF9 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375AE9286F898F00BA8EF9 /* Controller.swift */; };
 		7E375AEF286F899200BA8EF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E375AEE286F899200BA8EF9 /* Assets.xcassets */; };
 		7E375AF2286F899200BA8EF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E375AF0286F899200BA8EF9 /* LaunchScreen.storyboard */; };
+		7E375AFC286FA37F00BA8EF9 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375AFB286FA37F00BA8EF9 /* AppTheme.swift */; };
+		7E375B03286FA65900BA8EF9 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375B02286FA65900BA8EF9 /* UIView + Extension.swift */; };
+		7E375B1328705E6C00BA8EF9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375B1228705E6C00BA8EF9 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7E375AE2286F898F00BA8EF9 /* TEST_test_GISMART.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TEST_test_GISMART.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E375AE5286F898F00BA8EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E375AE7286F898F00BA8EF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7E375AE9286F898F00BA8EF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7E375AE9286F898F00BA8EF9 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		7E375AEE286F899200BA8EF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E375AF1286F899200BA8EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E375AF3286F899200BA8EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E375AFB286FA37F00BA8EF9 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		7E375B02286FA65900BA8EF9 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		7E375B1228705E6C00BA8EF9 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = ../../../../../.Trash/MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,57 @@
 		7E375AE4286F898F00BA8EF9 /* TEST_test_GISMART */ = {
 			isa = PBXGroup;
 			children = (
+				7E375AFE286FA48600BA8EF9 /* Modules */,
+				7E375B01286FA4C800BA8EF9 /* Extensions */,
+				7E375AFD286FA46F00BA8EF9 /* Resources */,
 				7E375AE5286F898F00BA8EF9 /* AppDelegate.swift */,
 				7E375AE7286F898F00BA8EF9 /* SceneDelegate.swift */,
-				7E375AE9286F898F00BA8EF9 /* ViewController.swift */,
 				7E375AEE286F899200BA8EF9 /* Assets.xcassets */,
 				7E375AF0286F899200BA8EF9 /* LaunchScreen.storyboard */,
 				7E375AF3286F899200BA8EF9 /* Info.plist */,
 			);
 			path = TEST_test_GISMART;
+			sourceTree = "<group>";
+		};
+		7E375AFD286FA46F00BA8EF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7E375AFB286FA37F00BA8EF9 /* AppTheme.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7E375AFE286FA48600BA8EF9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				7E375B0F28705DFC00BA8EF9 /* View */,
+				7E375B1128705E0600BA8EF9 /* Controller */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		7E375B01286FA4C800BA8EF9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7E375B02286FA65900BA8EF9 /* UIView + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7E375B0F28705DFC00BA8EF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E375B1228705E6C00BA8EF9 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7E375B1128705E0600BA8EF9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7E375AE9286F898F00BA8EF9 /* Controller.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E375AEA286F898F00BA8EF9 /* ViewController.swift in Sources */,
+				7E375AEA286F898F00BA8EF9 /* Controller.swift in Sources */,
+				7E375B1328705E6C00BA8EF9 /* MainView.swift in Sources */,
+				7E375AFC286FA37F00BA8EF9 /* AppTheme.swift in Sources */,
 				7E375AE6286F898F00BA8EF9 /* AppDelegate.swift in Sources */,
+				7E375B03286FA65900BA8EF9 /* UIView + Extension.swift in Sources */,
 				7E375AE8286F898F00BA8EF9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
