@@ -30,7 +30,8 @@ extension Controller {
     private func createMainView() -> UIView {
         let mainView = MainView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
-        mainView.didTapActivateButton = {
+        mainView.didTapActivateButton = { [weak self] in
+            guard let self = self else { return }
             print("КНОПКА")
             self.showAlert()
         }

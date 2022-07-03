@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class ActualGradientButton: UIButton {
+final class GradientButton: UIButton {
+    
+    struct Constans {
+        static let firstColor: CGColor = AppTheme.Colors.pink.cgColor
+        static let secondColor: CGColor = AppTheme.Colors.lightBlue.cgColor
+    }
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -17,7 +22,7 @@ final class ActualGradientButton: UIButton {
     private lazy var gradientLayer: CAGradientLayer = {
         let lay = CAGradientLayer()
         lay.frame = self.bounds
-        lay.colors = [AppTheme.Colors.pink.cgColor, AppTheme.Colors.lightBlue.cgColor]
+        lay.colors = [Constans.firstColor, Constans.secondColor]
         lay.startPoint = CGPoint(x: 0, y: 1)
         lay.endPoint = CGPoint(x: 0, y: 0)
         lay.cornerRadius = 12
