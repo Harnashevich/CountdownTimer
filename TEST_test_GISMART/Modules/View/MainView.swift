@@ -9,23 +9,19 @@ import UIKit
 
 final class MainView: UIView {
     
-//    private enum Constants {
-//        static var multiplyDepentScteen: Double = 0.3
-//    }
-    
     //MARK: - UI
     
     /// ImageVIew "Music"
     private lazy var musicLogoImageView = createImageView()
     
     /// Label with days
-    private lazy var daysLabel = createTimerLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFBold(10.dynamicSize()))
+    private lazy var daysLabel = createTimerLabel()
     /// Label with hours
-    private lazy var hoursLabel = createTimerLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFBold(10.dynamicSize()))
+    private lazy var hoursLabel = createTimerLabel()
     /// Label with minutes
-    private lazy var minutesLabel = createTimerLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFBold(10.dynamicSize()))
+    private lazy var minutesLabel = createTimerLabel()
     /// Label with seconds
-    private lazy var secondsLabel = createTimerLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFBold(10.dynamicSize()))
+    private lazy var secondsLabel = createTimerLabel()
     /// Label with colon symbol after daysLabel
     private lazy var colonAfterDaysLabel = createColonLabel()
     /// Label with colon symbol after hoursLabel
@@ -55,10 +51,7 @@ final class MainView: UIView {
     private lazy var bottomStack = createTimerStack()
     
     
-    
     private lazy var testLabel = createColonLabel()
-    
-    var count = 0
     
     //MARK: - Lifecycle
     
@@ -79,7 +72,7 @@ final class MainView: UIView {
     var didTapActivateButton: (() -> Void)?
 }
 
-//MARK: - MainView private func
+//MARK: - MainView private methods
 
 extension MainView {
         
@@ -116,7 +109,7 @@ extension MainView {
                     musicLogoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: checkDevice()),
                     musicLogoImageView.widthAnchor.constraint(equalTo: musicLogoImageView.heightAnchor, multiplier: 2),
                     
-                    timerStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+                    timerStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 12),
                     timerStack.centerXAnchor.constraint(equalTo: testLabel.centerXAnchor),
                     
                     testLabel.leadingAnchor.constraint(equalTo: musicLogoImageView.trailingAnchor),
@@ -161,16 +154,17 @@ extension MainView {
     private func createImageView() -> UIImageView {
         let image = UIImageView()
         image.image = AppTheme.Images.musicLogo
+        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }
     
-    private func createTimerLabel(color: UIColor, font: UIFont) -> UILabel {
+    private func createTimerLabel() -> UILabel {
         let label = UILabel()
         label.widthAnchor.constraint(equalToConstant: 25.dynamicSize()).isActive = true
         label.heightAnchor.constraint(equalToConstant: 20.dynamicSize()).isActive = true
-        label.textColor = color
-        label.font = font
+        label.textColor = AppTheme.Colors.white
+        label.font = AppTheme.Fonts.SFBold(10.dynamicSize())
         label.textAlignment = .center
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 5

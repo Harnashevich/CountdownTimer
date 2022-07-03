@@ -17,7 +17,6 @@ enum AppTheme {
         static let gray = UIColor(red: 86/250, green: 86/250, blue: 86/250, alpha: 1.0)
         static let lightGray = UIColor(red: 175/250, green: 175/250, blue: 175/250, alpha: 1.0)
         static let white = UIColor(red: 250/250, green: 250/250, blue: 250/250, alpha: 1.0)
-        
     }
     
     enum Fonts {
@@ -48,5 +47,6 @@ enum AppTheme {
     
     enum Images {
         static let musicLogo = UIImage(named: "musicLogo")
+        static let gismartLogo = UIImage(named: "gismartLogo")
     }
 }

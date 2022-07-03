@@ -15,13 +15,13 @@ final class ActualGradientButton: UIButton {
     }
 
     private lazy var gradientLayer: CAGradientLayer = {
-        let l = CAGradientLayer()
-        l.frame = self.bounds
-        l.colors = [AppTheme.Colors.pink.cgColor, AppTheme.Colors.lightBlue.cgColor]
-        l.startPoint = CGPoint(x: 0, y: 1)
-        l.endPoint = CGPoint(x: 0, y: 0)
-        l.cornerRadius = 12
-        layer.insertSublayer(l, at: 0)
-        return l
+        let lay = CAGradientLayer()
+        lay.frame = self.bounds
+        lay.colors = [AppTheme.Colors.pink.cgColor, AppTheme.Colors.lightBlue.cgColor]
+        lay.startPoint = CGPoint(x: 0, y: 1)
+        lay.endPoint = CGPoint(x: 0, y: 0)
+        lay.cornerRadius = 12
+        layer.insertSublayer(lay, at: 0)
+        return lay
     }()
 }

@@ -57,7 +57,7 @@ extension Controller {
     private func showAlert() {
         let customAlert = AlertView()
          customAlert.showAlert(with: "Great!",
-                               message: "Offer acritated at 00:00",
+                               message: "Offer acritated at ",
                                on: self)
     }
 }
