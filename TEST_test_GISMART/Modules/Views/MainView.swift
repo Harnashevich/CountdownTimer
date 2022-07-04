@@ -60,10 +60,19 @@ final class MainView: UIView {
     
     private lazy var fakeLabel = createColonLabel()
     
+    
+    //MARK: - Variables
+    
+    private lazy var remainingTimeInSeconds: Int = 86400 + 1
+    private lazy var formatter = DateFormatterManager.shared
+    private var timer: Timer!
+    
+    
     //MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupNotification()
         configureUI()
         addViews()
         addConstraints()
@@ -83,13 +92,18 @@ final class MainView: UIView {
 
 extension MainView {
     
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIScene.didActivateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIScene.willDeactivateNotification, object: nil)
+    }
+    
     private func configureUI() {
         backgroundColor = AppTheme.Colors.black
         
-        daysLabel.text = "00"
-        hoursLabel.text = "01"
-        minutesLabel.text = "02"
-        secondsLabel.text = "03"
+        daysLabel.text = ""
+        hoursLabel.text = ""
+        minutesLabel.text = ""
+        secondsLabel.text = ""
         
         fakeLabel.text = String()
         
@@ -147,14 +161,17 @@ extension MainView {
     private func checkDevice() -> Double {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
-            print("ЭТО АЙФОН")
             return 0.5
-        case .pad:
-            print("ЭТО АЙПЭД")
-            return 0.4
         default:
-            print("ЭТО другое")
-            return 0.5
+            return 0.4
+        }
+    }
+    
+    private func chechLabelAnimation(label: UILabel, type: String) {
+        if label.text != type {
+            label.createTimerAnimation(isActivated: true)
+        } else {
+            label.createTimerAnimation(isActivated: false)
         }
     }
     
@@ -223,10 +240,56 @@ extension MainView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
+}
+
+//MARK: - MainView methods
+
+extension MainView {
     
-    @objc func activateButtonTapped() {
+    @objc private func activateButtonTapped() {
         didTapActivateButton?()
+        timer.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
     
+    @objc private func didEnterBackground(notification: NSNotification) {
+        print("play")
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(step),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
     
+    @objc private func willEnterForeground(notification: NSNotification) {
+        print("pause")
+        timer.invalidate()
+    }
+    
+    @objc private func step() {
+        if remainingTimeInSeconds > 0 {
+            remainingTimeInSeconds -= 1
+        } else {
+            timer.invalidate()
+            remainingTimeInSeconds = 0
+        }
+        
+        secondsLabel.createTimerAnimation(isActivated: true)
+        
+        chechLabelAnimation(label: minutesLabel,
+                            type: formatter.getTime(seconds: remainingTimeInSeconds).minutes)
+        
+        chechLabelAnimation(label: hoursLabel,
+                            type: formatter.getTime(seconds: remainingTimeInSeconds).hour)
+        
+        chechLabelAnimation(label: daysLabel,
+                            type: Int(remainingTimeInSeconds/86400).daysLabelFormat())
+        
+        
+        
+        daysLabel.text = Int(remainingTimeInSeconds/86400).daysLabelFormat()
+        hoursLabel.text = "\(formatter.getTime(seconds: remainingTimeInSeconds).hour)"
+        minutesLabel.text = "\(formatter.getTime(seconds: remainingTimeInSeconds).minutes)"
+        secondsLabel.text = "\(formatter.getTime(seconds: remainingTimeInSeconds).seconds)"
+    }
 }
