@@ -272,7 +272,7 @@ extension MainView {
     }
     
     @objc private func makesStepTimer() {
-        let secondsInDay = 60 * 60 * 24 ///Variable to counting full days
+        let secondsInDay = 60 * 60 * 24 ///Variable to counting full days in countdown timer
         
         if Constans.remainingTime > 0 {
             Constans.remainingTime -= 1
