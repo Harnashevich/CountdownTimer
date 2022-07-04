@@ -233,7 +233,7 @@ extension MainView {
     private func setMultiplayer() -> Double {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
-            return 0.5
+            return 0.45
         default:
             return 0.35
         }
