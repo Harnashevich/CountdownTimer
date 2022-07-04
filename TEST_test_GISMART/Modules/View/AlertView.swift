@@ -83,6 +83,5 @@ extension AlertView {
         
         self.backgroundView.alpha = Constans.backgroungAltpa
         self.alertView.center = targetView.center
-        
     }
 }
