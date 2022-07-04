@@ -11,10 +11,13 @@ class Controller: UIViewController {
     
     //MARK: - UI
     
+    /// Main view with countdown timer and other
     private lazy var mainView = createMainView()
+    /// View with custom alert
+    private lazy var customAlert = AlertView()
     
     //MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addViews()
@@ -29,12 +32,14 @@ extension Controller {
     private func createMainView() -> UIView {
         let mainView = MainView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
-        mainView.didTapActivateButton = { [weak self] days, hours, minutes, seconds in
+        mainView.didTapActivateButton = { [weak self] countdown in
             guard let self = self else { return }
-            var days = ("\(days):")
-            var hours = ("\(hours):")
-            var minutes = ("\(minutes):")
             
+            var days = ("\(countdown.days):")
+            var hours = ("\(countdown.hour):")
+            var minutes = ("\(countdown.minutes):")
+            let seconds = countdown.seconds
+            /// Create same format as countdown timer
             if days == "00:" && hours != "00:" {
                 days = String()
             } else if days == "00:" && hours == "00:" && minutes != "00:" {
@@ -45,7 +50,7 @@ extension Controller {
                 hours = String()
                 minutes = String()
             }
-            self.showAlert(time: days + hours + minutes + seconds)
+            self.customAlert.showAlert(with: days + hours + minutes + seconds, on: self)
         }
         return mainView
     }
@@ -61,12 +66,5 @@ extension Controller {
             mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-    
-    private func showAlert(time: String) {
-        let customAlert = AlertView()
-         customAlert.showAlert(with: "Great!",
-                               message: "Offer acritated at " + time,
-                               on: self)
     }
 }

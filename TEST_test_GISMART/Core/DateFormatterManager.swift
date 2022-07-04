@@ -9,10 +9,9 @@ import Foundation
 
 final class DateFormatterManager {
     
-    public static let shared = DateFormatterManager()
-   
-    private let formatter = DateFormatter()
+    static let shared = DateFormatterManager()
     
+    private let formatter = DateFormatter()
     private let currentSecondsFromGMT = TimeZone.current.secondsFromGMT()
     
     private init() {}
@@ -21,7 +20,7 @@ final class DateFormatterManager {
         formatter.dateFormat = format
         formatter.timeZone = .current
     }
-    
+    /// Cteate from seconds to Countdown Model
     func getTime(seconds: Int) -> Countdown {
         var hour = String()
         var minutes = String()
@@ -41,6 +40,6 @@ final class DateFormatterManager {
         let secondsInSeconds = Date(timeIntervalSince1970: currentTime)
         second = formatter.string(from: secondsInSeconds)
         
-        return Countdown(hour: hour, minutes: minutes, seconds: second)
+        return Countdown(days: String(), hour: hour, minutes: minutes, seconds: second)
     }
 }

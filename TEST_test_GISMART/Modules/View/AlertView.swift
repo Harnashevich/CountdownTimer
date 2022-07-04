@@ -10,6 +10,8 @@ import UIKit
 final class AlertView {
     
     struct Constans {
+        static let titleText = "Great!"
+        static let messageText = "Offer acritated at "
         static let backgroungAltpa: CGFloat = 0.6
     }
     
@@ -45,8 +47,7 @@ extension AlertView {
 
 extension AlertView {
     
-    func showAlert(with title: String,
-                   message: String,
+    func showAlert(with time: String,
                    on viewController: UIViewController) {
         guard let targetView = viewController.view else { return }
         backgroundView.frame = targetView.bounds
@@ -63,7 +64,7 @@ extension AlertView {
                                                y: alertView.frame.size.height / 5,
                                                width: alertView.frame.size.width,
                                                height: 25.dynamicSize()))
-        titleLabel.text = title
+        titleLabel.text = Constans.titleText
         titleLabel.textColor = AppTheme.Colors.white
         titleLabel.font = AppTheme.Fonts.SFBold(30.dynamicSize())
         titleLabel.textAlignment = .center
@@ -74,7 +75,7 @@ extension AlertView {
                                                  y: alertView.frame.size.height / 1.75,
                                                  width: alertView.frame.size.width,
                                                  height: 20.dynamicSize()))
-        messageLabel.text = message
+        messageLabel.text = Constans.messageText + time
         messageLabel.textColor = AppTheme.Colors.white
         messageLabel.font = AppTheme.Fonts.SFRegular(10.dynamicSize())
         messageLabel.textAlignment = .center

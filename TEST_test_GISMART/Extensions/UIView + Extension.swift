@@ -26,14 +26,12 @@ extension UIView {
         layer.masksToBounds = false
     }
     
-    func createTimerAnimation(isActivated: Bool) {
-        if isActivated == false { return } else {
-            let animation = CATransition()
-            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-            animation.type = CATransitionType.reveal
-            animation.duration = 0.4
-            animation.subtype = .fromBottom
-            layer.add(animation, forKey: CATransitionType.reveal.rawValue)
-        }
+    func createTimerAnimation() {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.reveal
+        animation.duration = 0.4
+        animation.subtype = .fromBottom
+        layer.add(animation, forKey: CATransitionType.reveal.rawValue)
     }
 }

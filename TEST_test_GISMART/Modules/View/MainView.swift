@@ -9,11 +9,21 @@ import UIKit
 
 final class MainView: UIView {
     
+    struct Constans {
+        static let lastMinuteText = "LAST-MINUTE CHANCE! \n to claim your offer"
+        static let saleText = "90% OFF"
+        static let forFanText = "For true music fans"
+        static let hundredsText = "Hundreds of songs in you pocket"
+        static let privacyText = "Privacy"
+        static let restoreText = "Restore"
+        static let termsText = "Terms"
+        static var remainingTime: Int = 60 * 60 * 24 /// Сountdown value. You can install any. BUT edit initial value in сountdown labels, or remove them.
+    }
+    
     //MARK: - UI
     
     /// ImageVIew "Music"
     private lazy var musicLogoImageView = createImageView()
-    
     /// Label with days
     private lazy var daysLabel = createTimerLabel()
     /// Label with hours
@@ -28,46 +38,37 @@ final class MainView: UIView {
     private lazy var colonAfterHoursLabel = createColonLabel()
     /// Label with colon symbol after minutesLabel
     private lazy var colonAfterMinutesLabel = createColonLabel()
-    
-    /// Stack with countdown Timer
-    private lazy var timerStack = createTimerStack()
+    /// Stack with countdown timer
+    private lazy var timerStack = createTimerStack(spacing: 4)
     /// Label "For true music fans"
-    private lazy var forFansLabel = createLabel(color: AppTheme.Colors.white,
-                                                font: AppTheme.Fonts.SFSemiBold(5.dynamicSize()))
+    private lazy var forFansLabel = createLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFSemiBold(5.dynamicSize()))
     /// Label "90% OFF"
-    private lazy var saleLabel = createLabel(color: AppTheme.Colors.white,
-                                             font: AppTheme.Fonts.SFHeavy(25.dynamicSize()))
+    private lazy var saleLabel = createLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFHeavy(25.dynamicSize()))
     /// Label "LAST-MINUTE..."
-    private lazy var lastMinuteLabel = createLabel(color: AppTheme.Colors.white,
-                                                   font: AppTheme.Fonts.SFSemiBold(10.dynamicSize()))
+    private lazy var lastMinuteLabel = createLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFSemiBold(10.dynamicSize()))
     /// Label "Hundreds of songs in you pocket"
-    private lazy var hundredsLabel = createLabel(color: AppTheme.Colors.lightGray,
-                                                 font: AppTheme.Fonts.SFRegular(6.dynamicSize()))
+    private lazy var hundredsLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(6.dynamicSize()))
     /// Button activate offer
     private lazy var activateButton = createActivateButton()
     /// Label "Privacy"
-    private lazy var privacyLabel = createLabel(color: AppTheme.Colors.lightGray,
-                                                font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
+    private lazy var privacyLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
     /// Label "Restore"
-    private lazy var restoreLabel = createLabel(color: AppTheme.Colors.lightGray,
-                                                font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
+    private lazy var restoreLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
     /// Label "Terms"
-    private lazy var termsLabel = createLabel(color: AppTheme.Colors.lightGray,
-                                              font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
+    private lazy var termsLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
     /// Stack with labels "Privacy", Restore", "Terms"
-    private lazy var bottomStack = createTimerStack()
-    
-    
+    private lazy var bottomStack = createTimerStack(spacing: 15)
+    /// Label "X" does nothing
+    private lazy var xLabel = createLabel(color: AppTheme.Colors.gray, font: AppTheme.Fonts.SFRegular(10.dynamicSize()))
+    /// Label for install timerStack centerXAnchor
     private lazy var fakeLabel = createColonLabel()
-    
     
     //MARK: - Variables
     
-    private lazy var remainingTimeInSeconds: Int = 86400
+    /// To convert from seconds to time
     private lazy var formatter = DateFormatterManager.shared
-    private var timer: Timer!
-    
-    
+    /// Timer for counting
+    private var timer: Timer?
     
     //MARK: - Lifecycle
     
@@ -86,40 +87,34 @@ final class MainView: UIView {
     //MARK: - Callbacks
     
     /// Button press closure
-    var didTapActivateButton: ((String, String, String, String) -> Void)?
+    var didTapActivateButton: ((Countdown) -> Void)?
 }
 
 //MARK: - MainView private methods
 
 extension MainView {
     
-    private func setupNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIScene.didActivateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIScene.willDeactivateNotification, object: nil)
-    }
-    
     private func configureUI() {
         backgroundColor = AppTheme.Colors.black
+        
+        forFansLabel.text = Constans.forFanText
+        saleLabel.text = Constans.saleText
+        lastMinuteLabel.text = Constans.lastMinuteText
+        hundredsLabel.text = Constans.hundredsText
+        privacyLabel.text = Constans.privacyText
+        restoreLabel.text = Constans.restoreText
+        termsLabel.text = Constans.termsText
+        fakeLabel.text = String()
         
         daysLabel.text = "01"
         hoursLabel.text = "00"
         minutesLabel.text = "00"
         secondsLabel.text = "00"
-        
-        fakeLabel.text = String()
-        
-        forFansLabel.text = "For true music fans"
-        saleLabel.text = "90% OFF"
-        lastMinuteLabel.text = "LAST-MINUTE CHANCE! \n to claim your offer"
-        hundredsLabel.text = "Hundreds of songs in you pocket"
-        
-        privacyLabel.text = "Privacy"
-        restoreLabel.text = "Restore"
-        termsLabel.text = "Terms"
+        xLabel.text = "✕"
     }
     
     private func addViews() {
-        addSubviews(musicLogoImageView, timerStack, fakeLabel, forFansLabel, saleLabel, lastMinuteLabel, hundredsLabel, activateButton, bottomStack)
+        addSubviews(musicLogoImageView, timerStack, fakeLabel, forFansLabel, saleLabel, lastMinuteLabel, hundredsLabel, activateButton, bottomStack, xLabel)
         timerStack.addArrangedSubviews(daysLabel, colonAfterDaysLabel, hoursLabel, colonAfterHoursLabel, minutesLabel, colonAfterMinutesLabel, secondsLabel)
         bottomStack.addArrangedSubviews(privacyLabel, restoreLabel, termsLabel)
     }
@@ -128,7 +123,7 @@ extension MainView {
         NSLayoutConstraint.activate([
             musicLogoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             musicLogoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            musicLogoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: checkDevice()),
+            musicLogoImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: setMultiplayer()),
             musicLogoImageView.widthAnchor.constraint(equalTo: musicLogoImageView.heightAnchor, multiplier: 2),
             
             timerStack.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 12),
@@ -156,24 +151,10 @@ extension MainView {
             
             bottomStack.centerXAnchor.constraint(equalTo: timerStack.centerXAnchor),
             bottomStack.topAnchor.constraint(equalTo: activateButton.bottomAnchor, constant: 20),
+            
+            xLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            xLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24)
         ])
-    }
-    
-    private func checkDevice() -> Double {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .phone:
-            return 0.5
-        default:
-            return 0.4
-        }
-    }
-    
-    private func chechLabelAnimation(label: UILabel, type: String) {
-        if label.text != type {
-            label.createTimerAnimation(isActivated: true)
-        } else {
-            label.createTimerAnimation(isActivated: false)
-        }
     }
     
     private func createImageView() -> UIImageView {
@@ -186,14 +167,14 @@ extension MainView {
     
     private func createTimerLabel() -> UILabel {
         let label = UILabel()
-        label.widthAnchor.constraint(equalToConstant: 25.dynamicSize()).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 20.dynamicSize()).isActive = true
+        label.widthAnchor.constraint(equalToConstant: 30.dynamicSize()).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 17.dynamicSize()).isActive = true
         label.textColor = AppTheme.Colors.white
-        label.font = AppTheme.Fonts.SFBold(10.dynamicSize())
+        label.backgroundColor = AppTheme.Colors.gray
+        label.font = AppTheme.Fonts.SFBold(8.dynamicSize())
         label.textAlignment = .center
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 5
-        label.backgroundColor = AppTheme.Colors.gray
+        label.layer.cornerRadius = 8
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -222,11 +203,11 @@ extension MainView {
         return label
     }
     
-    private func createTimerStack() -> UIStackView {
+    private func createTimerStack(spacing: CGFloat) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
-        stackView.spacing = 6
+        stackView.spacing = spacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }
@@ -241,6 +222,28 @@ extension MainView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
+    
+    /// Method to stop the timer in SceneDelegate.sceneWillResignActive, and start in SceneDelegate.sceneDidBecomeActive
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIScene.didActivateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIScene.willDeactivateNotification, object: nil)
+    }
+    
+    /// Method to multiplier sizing musicImage
+    private func setMultiplayer() -> Double {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return 0.5
+        default:
+            return 0.35
+        }
+    }
+    /// Method to check need to enable animation in timer labels
+    private func chechLabelAnimation(label: UILabel, value: String) {
+        if label.text != value {
+            label.createTimerAnimation()
+        }
+    }
 }
 
 //MARK: - MainView methods
@@ -248,52 +251,47 @@ extension MainView {
 extension MainView {
     
     @objc private func activateButtonTapped() {
-        didTapActivateButton?(daysLabel.text ?? String(),
-                              hoursLabel.text ?? String(),
-                              minutesLabel.text ?? String(),
-                              secondsLabel.text ?? String())
-        timer.invalidate()
-        NotificationCenter.default.removeObserver(self)
+        didTapActivateButton?(Countdown(days: daysLabel.text ?? String(),
+                                        hour: hoursLabel.text ?? String(),
+                                        minutes: minutesLabel.text ?? String(),
+                                        seconds: secondsLabel.text ?? String()))
+        timer?.invalidate()
+        NotificationCenter.default.removeObserver(self) /// After tapped button timer removed
     }
     
     @objc private func didEnterBackground(notification: NSNotification) {
-        print("play")
         timer = Timer.scheduledTimer(timeInterval: 1,
                                      target: self,
-                                     selector: #selector(step),
+                                     selector: #selector(makesStepTimer),
                                      userInfo: nil,
-                                     repeats: true)
+                                     repeats: true)   /// Timer start
     }
     
     @objc private func willEnterForeground(notification: NSNotification) {
-        print("pause")
-        timer.invalidate()
+        timer?.invalidate() /// Timer stop
     }
     
-    @objc private func step() {
-        if remainingTimeInSeconds > 0 {
-            remainingTimeInSeconds -= 1
+    @objc private func makesStepTimer() {
+        let secondsInDay = 60 * 60 * 24 ///Variable to counting full days
+        
+        if Constans.remainingTime > 0 {
+            Constans.remainingTime -= 1
         } else {
-            timer.invalidate()
-            remainingTimeInSeconds = 0
+            timer?.invalidate()
+            Constans.remainingTime = 0
         }
         
-        secondsLabel.createTimerAnimation(isActivated: true)
-        
+        secondsLabel.createTimerAnimation()
         chechLabelAnimation(label: minutesLabel,
-                            type: formatter.getTime(seconds: remainingTimeInSeconds).minutes)
-        
+                            value: formatter.getTime(seconds: Constans.remainingTime).minutes)
         chechLabelAnimation(label: hoursLabel,
-                            type: formatter.getTime(seconds: remainingTimeInSeconds).hour)
-        
+                            value: formatter.getTime(seconds: Constans.remainingTime).hour)
         chechLabelAnimation(label: daysLabel,
-                            type: Int(remainingTimeInSeconds/86400).daysLabelFormat())
+                            value: Int(Constans.remainingTime/secondsInDay).daysLabelFormat())
         
-        
-        
-        daysLabel.text = Int(remainingTimeInSeconds/86400).daysLabelFormat()
-        hoursLabel.text = "\(formatter.getTime(seconds: remainingTimeInSeconds).hour)"
-        minutesLabel.text = "\(formatter.getTime(seconds: remainingTimeInSeconds).minutes)"
-        secondsLabel.text = "\(formatter.getTime(seconds: remainingTimeInSeconds).seconds)"
+        daysLabel.text = Int(Constans.remainingTime/secondsInDay).daysLabelFormat()
+        hoursLabel.text = "\(formatter.getTime(seconds: Constans.remainingTime).hour)"
+        minutesLabel.text = "\(formatter.getTime(seconds: Constans.remainingTime).minutes)"
+        secondsLabel.text = "\(formatter.getTime(seconds: Constans.remainingTime).seconds)"
     }
 }

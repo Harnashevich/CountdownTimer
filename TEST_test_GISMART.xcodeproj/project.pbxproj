@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				7E375B462872ADC500BA8EF9 /* Model */,
-				7E375B1428705EF500BA8EF9 /* Views */,
+				7E375B1428705EF500BA8EF9 /* View */,
 				7E375B1128705E0600BA8EF9 /* Controller */,
 			);
 			path = Modules;
@@ -125,13 +125,13 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		7E375B1428705EF500BA8EF9 /* Views */ = {
+		7E375B1428705EF500BA8EF9 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				7E375B1528705F0200BA8EF9 /* MainView.swift */,
 				7E375B1E2870F1FA00BA8EF9 /* AlertView.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		7E375B1B2870CED000BA8EF9 /* UIKit */ = {
