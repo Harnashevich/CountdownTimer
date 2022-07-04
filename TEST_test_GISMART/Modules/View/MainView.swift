@@ -264,7 +264,7 @@ extension MainView {
                                      target: self,
                                      selector: #selector(makesStepTimer),
                                      userInfo: nil,
-                                     repeats: true)   /// Timer start
+                                     repeats: true) /// Timer start
     }
     
     @objc private func willEnterForeground(notification: NSNotification) {
