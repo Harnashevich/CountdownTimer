@@ -8,7 +8,7 @@
 import Foundation
 
 extension Int {
-    
+    /// Create format from 1 to 01
     func daysLabelFormat() -> String {
         String(format: "%02d", self)
     }
