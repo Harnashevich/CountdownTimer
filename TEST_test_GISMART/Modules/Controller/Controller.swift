@@ -17,7 +17,6 @@ class Controller: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
         addViews()
         addConstraints()
     }
@@ -30,16 +29,25 @@ extension Controller {
     private func createMainView() -> UIView {
         let mainView = MainView()
         mainView.translatesAutoresizingMaskIntoConstraints = false
-        mainView.didTapActivateButton = { [weak self] in
+        mainView.didTapActivateButton = { [weak self] days, hours, minutes, seconds in
             guard let self = self else { return }
-            print("КНОПКА")
-            self.showAlert()
+            var days = ("\(days):")
+            var hours = ("\(hours):")
+            var minutes = ("\(minutes):")
+            
+            if days == "00:" && hours != "00:" {
+                days = String()
+            } else if days == "00:" && hours == "00:" && minutes != "00:" {
+                days = String()
+                hours = String()
+            } else if days == "00:" && hours  == "00:" && minutes == "00:" {
+                days = String()
+                hours = String()
+                minutes = String()
+            }
+            self.showAlert(time: days + hours + minutes + seconds)
         }
         return mainView
-    }
-    
-    private func configureUI() {
-        view.backgroundColor = .systemPink
     }
     
     private func addViews() {
@@ -55,10 +63,10 @@ extension Controller {
         ])
     }
     
-    private func showAlert() {
+    private func showAlert(time: String) {
         let customAlert = AlertView()
          customAlert.showAlert(with: "Great!",
-                               message: "Offer acritated at ",
+                               message: "Offer acritated at " + time,
                                on: self)
     }
 }

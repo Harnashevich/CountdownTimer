@@ -63,9 +63,10 @@ final class MainView: UIView {
     
     //MARK: - Variables
     
-    private lazy var remainingTimeInSeconds: Int = 86400 + 1
+    private lazy var remainingTimeInSeconds: Int = 86400
     private lazy var formatter = DateFormatterManager.shared
     private var timer: Timer!
+    
     
     
     //MARK: - Lifecycle
@@ -85,7 +86,7 @@ final class MainView: UIView {
     //MARK: - Callbacks
     
     /// Button press closure
-    var didTapActivateButton: (() -> Void)?
+    var didTapActivateButton: ((String, String, String, String) -> Void)?
 }
 
 //MARK: - MainView private methods
@@ -100,10 +101,10 @@ extension MainView {
     private func configureUI() {
         backgroundColor = AppTheme.Colors.black
         
-        daysLabel.text = ""
-        hoursLabel.text = ""
-        minutesLabel.text = ""
-        secondsLabel.text = ""
+        daysLabel.text = "01"
+        hoursLabel.text = "00"
+        minutesLabel.text = "00"
+        secondsLabel.text = "00"
         
         fakeLabel.text = String()
         
@@ -247,7 +248,10 @@ extension MainView {
 extension MainView {
     
     @objc private func activateButtonTapped() {
-        didTapActivateButton?()
+        didTapActivateButton?(daysLabel.text ?? String(),
+                              hoursLabel.text ?? String(),
+                              minutesLabel.text ?? String(),
+                              secondsLabel.text ?? String())
         timer.invalidate()
         NotificationCenter.default.removeObserver(self)
     }
