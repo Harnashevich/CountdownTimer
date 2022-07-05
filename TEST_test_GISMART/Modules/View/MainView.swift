@@ -224,12 +224,6 @@ extension MainView {
         return button
     }
     
-    /// Method to stop the timer in SceneDelegate.sceneWillResignActive, and start in SceneDelegate.sceneDidBecomeActive
-    private func setupNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIScene.didActivateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIScene.willDeactivateNotification, object: nil)
-    }
-    
     /// Method to multiplier sizing musicImage
     private func setMultiplayer() -> Double {
         switch UIDevice.current.userInterfaceIdiom {
@@ -238,6 +232,12 @@ extension MainView {
         default:
             return 0.35
         }
+    }
+    
+    /// Method to stop the timer in SceneDelegate.sceneWillResignActive, and start in SceneDelegate.sceneDidBecomeActive
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIScene.didActivateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIScene.willDeactivateNotification, object: nil)
     }
     /// Method to check need to enable animation in timer labels
     private func chechLabelAnimation(label: UILabel, value: String) {
