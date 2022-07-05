@@ -18,6 +18,7 @@ final class MainView: UIView {
         static let restoreText = "Restore"
         static let termsText = "Terms"
         static var remainingTime: Int = 60 * 60 * 24 /// Сountdown value. You can install any. BUT edit initial value in сountdown labels, or remove them.
+        static let secondsInDay = 60 * 60 * 24 ///Variable to counting full days in countdown timer
     }
     
     //MARK: - UI
@@ -272,8 +273,6 @@ extension MainView {
     }
     
     @objc private func makesStepTimer() {
-        let secondsInDay = 60 * 60 * 24 ///Variable to counting full days in countdown timer
-        
         if Constans.remainingTime > 0 {
             Constans.remainingTime -= 1
         } else {
@@ -287,9 +286,9 @@ extension MainView {
         chechLabelAnimation(label: hoursLabel,
                             value: dateManager.getTime(seconds: Constans.remainingTime).hours)
         chechLabelAnimation(label: daysLabel,
-                            value: Int(Constans.remainingTime/secondsInDay).daysLabelFormat())
+                            value: Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat())
         
-        daysLabel.text = Int(Constans.remainingTime/secondsInDay).daysLabelFormat()
+        daysLabel.text = Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat()
         hoursLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).hours)"
         minutesLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).minutes)"
         secondsLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).seconds)"
