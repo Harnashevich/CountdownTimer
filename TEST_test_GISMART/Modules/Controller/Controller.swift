@@ -36,10 +36,10 @@ extension Controller {
             guard let self = self else { return }
             
             var days = ("\(countdown.days):")
-            var hours = ("\(countdown.hour):")
+            var hours = ("\(countdown.hours):")
             var minutes = ("\(countdown.minutes):")
             let seconds = countdown.seconds
-            /// Create same format as countdown timer
+            /// Create format without 00 in text
             if days == "00:" && hours != "00:" {
                 days = String()
             } else if days == "00:" && hours == "00:" && minutes != "00:" {

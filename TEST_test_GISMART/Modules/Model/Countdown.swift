@@ -8,5 +8,5 @@
 import Foundation
 
 struct Countdown {
-    var days, hour, minutes, seconds: String
+    var days, hours, minutes, seconds: String
 }

@@ -66,7 +66,7 @@ final class MainView: UIView {
     //MARK: - Variables
     
     /// To convert from seconds to time
-    private lazy var formatter = DateFormatterManager.shared
+    private lazy var dateManager = DateFormatterManager.shared
     /// Timer for counting
     private var timer: Timer?
     
@@ -246,13 +246,13 @@ extension MainView {
     }
 }
 
-//MARK: - MainView methods
+//MARK: - MainView @objc methods
 
 extension MainView {
     
     @objc private func activateButtonTapped() {
         didTapActivateButton?(Countdown(days: daysLabel.text ?? String(),
-                                        hour: hoursLabel.text ?? String(),
+                                        hours: hoursLabel.text ?? String(),
                                         minutes: minutesLabel.text ?? String(),
                                         seconds: secondsLabel.text ?? String()))
         timer?.invalidate()
@@ -283,15 +283,15 @@ extension MainView {
         
         secondsLabel.createTimerAnimation()
         chechLabelAnimation(label: minutesLabel,
-                            value: formatter.getTime(seconds: Constans.remainingTime).minutes)
+                            value: dateManager.getTime(seconds: Constans.remainingTime).minutes)
         chechLabelAnimation(label: hoursLabel,
-                            value: formatter.getTime(seconds: Constans.remainingTime).hour)
+                            value: dateManager.getTime(seconds: Constans.remainingTime).hours)
         chechLabelAnimation(label: daysLabel,
                             value: Int(Constans.remainingTime/secondsInDay).daysLabelFormat())
         
         daysLabel.text = Int(Constans.remainingTime/secondsInDay).daysLabelFormat()
-        hoursLabel.text = "\(formatter.getTime(seconds: Constans.remainingTime).hour)"
-        minutesLabel.text = "\(formatter.getTime(seconds: Constans.remainingTime).minutes)"
-        secondsLabel.text = "\(formatter.getTime(seconds: Constans.remainingTime).seconds)"
+        hoursLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).hours)"
+        minutesLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).minutes)"
+        secondsLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).seconds)"
     }
 }

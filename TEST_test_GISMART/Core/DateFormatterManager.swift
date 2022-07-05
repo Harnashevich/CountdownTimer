@@ -40,6 +40,6 @@ final class DateFormatterManager {
         let secondsInSeconds = Date(timeIntervalSince1970: currentTime)
         second = formatter.string(from: secondsInSeconds)
         
-        return Countdown(days: String(), hour: hour, minutes: minutes, seconds: second)
+        return Countdown(days: String(), hours: hour, minutes: minutes, seconds: second)
     }
 }
