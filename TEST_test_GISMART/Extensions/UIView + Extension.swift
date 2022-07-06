@@ -29,9 +29,9 @@ extension UIView {
     func createTimerAnimation() {
         let animation = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.reveal
-        animation.duration = 0.15
+        animation.type = CATransitionType.push
+        animation.duration = 0.3
         animation.subtype = .fromBottom
-        layer.add(animation, forKey: CATransitionType.reveal.rawValue)
+        layer.add(animation, forKey: CATransitionType.push.rawValue)
     }
 }
