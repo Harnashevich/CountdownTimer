@@ -17,8 +17,8 @@ final class MainView: UIView {
         static let privacyText = "Privacy"
         static let restoreText = "Restore"
         static let termsText = "Terms"
-        static var remainingTime: Int = 60 * 60 * 24 /// Сountdown value. You can install any. BUT edit initial value in сountdown labels, or remove them.
-        static let secondsInDay = 60 * 60 * 24 ///Variable to counting full days in countdown timer
+        static var remainingTime: Int = 60 * 60 * 24 /// Сountdown value. You can install any
+        static let secondsInDay = 60 * 60 * 24 /// Variable to counting full days in countdown timer
     }
     
     //MARK: - UI
@@ -97,6 +97,7 @@ extension MainView {
     
     private func configureUI() {
         backgroundColor = AppTheme.Colors.black
+        setValueToTimer()
         
         forFansLabel.text = Constans.forFanText
         saleLabel.text = Constans.saleText
@@ -106,11 +107,6 @@ extension MainView {
         restoreLabel.text = Constans.restoreText
         termsLabel.text = Constans.termsText
         fakeLabel.text = String()
-        
-        daysLabel.text = "01"
-        hoursLabel.text = "00"
-        minutesLabel.text = "00"
-        secondsLabel.text = "00"
         xLabel.text = "✕"
     }
     
@@ -245,6 +241,13 @@ extension MainView {
             label.createTimerAnimation()
         }
     }
+    
+    private func setValueToTimer() {
+        daysLabel.text = Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat()
+        hoursLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).hours)"
+        minutesLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).minutes)"
+        secondsLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).seconds)"
+    }
 }
 
 //MARK: - MainView @objc methods
@@ -279,18 +282,12 @@ extension MainView {
             timer?.invalidate()
             Constans.remainingTime = 0
         }
+       
+        chechLabelAnimation(label: secondsLabel, value: dateManager.getTime(seconds: Constans.remainingTime).seconds)
+        chechLabelAnimation(label: minutesLabel, value: dateManager.getTime(seconds: Constans.remainingTime).minutes)
+        chechLabelAnimation(label: hoursLabel, value: dateManager.getTime(seconds: Constans.remainingTime).hours)
+        chechLabelAnimation(label: daysLabel, value: Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat())
         
-        secondsLabel.createTimerAnimation()
-        chechLabelAnimation(label: minutesLabel,
-                            value: dateManager.getTime(seconds: Constans.remainingTime).minutes)
-        chechLabelAnimation(label: hoursLabel,
-                            value: dateManager.getTime(seconds: Constans.remainingTime).hours)
-        chechLabelAnimation(label: daysLabel,
-                            value: Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat())
-        
-        daysLabel.text = Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat()
-        hoursLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).hours)"
-        minutesLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).minutes)"
-        secondsLabel.text = "\(dateManager.getTime(seconds: Constans.remainingTime).seconds)"
+        setValueToTimer()
     }
 }
