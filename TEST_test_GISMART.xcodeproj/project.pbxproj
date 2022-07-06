@@ -22,6 +22,7 @@
 		7E375B432872AC7F00BA8EF9 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375B422872AC7F00BA8EF9 /* Int + Extension.swift */; };
 		7E375B482872AE0C00BA8EF9 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375B472872AE0C00BA8EF9 /* Countdown.swift */; };
 		7E375B4B2872AF6A00BA8EF9 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E375B4A2872AF6A00BA8EF9 /* DateFormatterManager.swift */; };
+		7E8D095028764647008252D6 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D094F28764647008252D6 /* String + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		7E375B422872AC7F00BA8EF9 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
 		7E375B472872AE0C00BA8EF9 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		7E375B4A2872AF6A00BA8EF9 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
+		7E8D094F28764647008252D6 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +111,11 @@
 		7E375B01286FA4C800BA8EF9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7E375B422872AC7F00BA8EF9 /* Int + Extension.swift */,
+				7E375B192870BE5F00BA8EF9 /* Double + Extension.swift */,
+				7E8D094F28764647008252D6 /* String + Extension.swift */,
 				7E375B02286FA65900BA8EF9 /* UIView + Extension.swift */,
 				7E375B17287085EA00BA8EF9 /* UIStackView + Extension.swift */,
-				7E375B192870BE5F00BA8EF9 /* Double + Extension.swift */,
-				7E375B422872AC7F00BA8EF9 /* Int + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			files = (
 				7E375AEA286F898F00BA8EF9 /* Controller.swift in Sources */,
 				7E375B18287085EA00BA8EF9 /* UIStackView + Extension.swift in Sources */,
+				7E8D095028764647008252D6 /* String + Extension.swift in Sources */,
 				7E375B432872AC7F00BA8EF9 /* Int + Extension.swift in Sources */,
 				7E375B1628705F0200BA8EF9 /* MainView.swift in Sources */,
 				7E375B4B2872AF6A00BA8EF9 /* DateFormatterManager.swift in Sources */,

@@ -22,24 +22,16 @@ final class DateFormatterManager {
     }
     /// Cteate from seconds to Countdown Model
     func getTime(seconds: Int) -> Countdown {
-        var hour = String()
-        var minutes = String()
-        var second = String()
-        
         let currentTime = Double(seconds  - currentSecondsFromGMT)
         
-        self.configureFormatter(formatter: self.formatter, format: "HH")
+        self.configureFormatter(formatter: self.formatter, format: "HHmmss")
         let hoursInSeconds = Date(timeIntervalSince1970: currentTime)
-        hour = formatter.string(from: hoursInSeconds)
+        let time = formatter.string(from: hoursInSeconds)
         
-        self.configureFormatter(formatter: self.formatter, format: "mm")
-        let minitesInSeconds = Date(timeIntervalSince1970: currentTime)
-        minutes = formatter.string(from: minitesInSeconds)
+        let hour = time[0 ..< 2]
+        let minutes = time[2 ..< 4]
+        let seconds = time[4 ..< 6]
         
-        self.configureFormatter(formatter: self.formatter, format: "ss")
-        let secondsInSeconds = Date(timeIntervalSince1970: currentTime)
-        second = formatter.string(from: secondsInSeconds)
-        
-        return Countdown(days: String(), hours: hour, minutes: minutes, seconds: second)
+        return Countdown(days: String(), hours: hour, minutes: minutes, seconds: seconds)
     }
 }
