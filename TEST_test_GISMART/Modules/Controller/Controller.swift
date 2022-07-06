@@ -34,23 +34,7 @@ extension Controller {
         mainView.translatesAutoresizingMaskIntoConstraints = false
         mainView.didTapActivateButton = { [weak self] countdown in
             guard let self = self else { return }
-            
-            var days = ("\(countdown.days):")
-            var hours = ("\(countdown.hours):")
-            var minutes = ("\(countdown.minutes):")
-            let seconds = countdown.seconds
-            /// Create format without 00 in text
-            if days == "00:" && hours != "00:" {
-                days = String()
-            } else if days == "00:" && hours == "00:" && minutes != "00:" {
-                days = String()
-                hours = String()
-            } else if days == "00:" && hours  == "00:" && minutes == "00:" {
-                days = String()
-                hours = String()
-                minutes = String()
-            }
-            self.customAlert.showAlert(with: days + hours + minutes + seconds, on: self)
+            self.customAlert.showAlert(model: countdown, on: self)
         }
         return mainView
     }
