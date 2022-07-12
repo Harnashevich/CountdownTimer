@@ -20,7 +20,7 @@ final class DateFormatterManager {
         formatter.dateFormat = format
         formatter.timeZone = .current
     }
-    /// Cteate from seconds to Countdown Model
+    /// Create from seconds to time (countdown model)
     func getTime(seconds: Int) -> Countdown {
         let currentTime = Double(seconds  - currentSecondsFromGMT)
         
