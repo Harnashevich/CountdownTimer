@@ -9,7 +9,7 @@ import UIKit
 
 final class AlertView {
     
-    struct Constans {
+    private enum Constans {
         static let titleText = "Great!"
         static let messageText = "Offer acritated at "
         static let backgroungAltpa: CGFloat = 0.6

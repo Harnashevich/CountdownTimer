@@ -9,7 +9,7 @@ import UIKit
 
 final class MainView: UIView {
     
-    struct Constans {
+    private enum Constans {
         static let lastMinuteText = "LAST-MINUTE CHANCE! \n to claim your offer"
         static let saleText = "90% OFF"
         static let forFanText = "For true music fans"

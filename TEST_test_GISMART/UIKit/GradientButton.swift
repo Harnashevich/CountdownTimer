@@ -9,7 +9,7 @@ import UIKit
 
 final class GradientButton: UIButton {
     
-    struct Constans {
+    private enum Constans {
         static let firstColor: CGColor = AppTheme.Colors.pink.cgColor
         static let secondColor: CGColor = AppTheme.Colors.lightBlue.cgColor
     }
