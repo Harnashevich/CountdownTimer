@@ -42,7 +42,7 @@ extension AlertView {
         
         targetView.addSubview(alertView)
         alertView.addSubviews(titleLabel, messageLabel)
-       
+        
         self.backgroundView.alpha = Constans.backgroungAltpa
         self.alertView.center = targetView.center
     }
@@ -89,9 +89,9 @@ extension AlertView {
     
     private func createTitleLabel() -> UILabel {
         let label = UILabel(frame: CGRect(x: 0,
-                                               y: alertView.frame.size.height / 5,
-                                               width: alertView.frame.size.width,
-                                               height: 25.dynamicSize()))
+                                          y: alertView.frame.size.height / 5,
+                                          width: alertView.frame.size.width,
+                                          height: 25.dynamicSize()))
         label.text = Constans.titleText
         label.textColor = AppTheme.Colors.white
         label.font = AppTheme.Fonts.SFBold(30.dynamicSize())
