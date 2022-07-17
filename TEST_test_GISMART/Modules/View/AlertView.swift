@@ -19,7 +19,7 @@ final class AlertView {
     
     /// View for background
     private lazy var backgroundView = createBackgroundView()
-    /// VIew for alert
+    /// View for alert
     private lazy var alertView = createAlertView()
 }
 

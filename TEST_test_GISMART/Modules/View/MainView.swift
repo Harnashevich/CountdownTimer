@@ -23,7 +23,7 @@ final class MainView: UIView {
     
     //MARK: - UI
     
-    /// ImageVIew "Music"
+    /// ImageView "Music"
     private lazy var musicLogoImageView = createImageView()
     /// Label with days
     private lazy var daysLabel = createTimerLabel()
