@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Controller: UIViewController {
+final class Controller: UIViewController {
     
     //MARK: - UI
     

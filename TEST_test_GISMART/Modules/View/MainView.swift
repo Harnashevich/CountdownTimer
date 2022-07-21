@@ -17,7 +17,7 @@ final class MainView: UIView {
         static let privacyText = "Privacy"
         static let restoreText = "Restore"
         static let termsText = "Terms"
-        static var remainingTime: Int = 60 * 60 * 24 /// Сountdown value. You can install any
+        static var remainingTime = 60 * 60 * 24 /// Сountdown value. You can install any
         static let secondsInDay = 60 * 60 * 24 /// Variable to counting full days in countdown timer
     }
     
