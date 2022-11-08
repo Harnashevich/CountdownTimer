@@ -4,17 +4,22 @@ Technical Task
 
 Create app that shows some special offer/discount to user. After activating this offer, app displays
 popup screen with exact time when this offer was activated.
+
+
 Main Screen
+
 Displays image on the left, and main content on the right. Some labels, countdown timer which
 starts when app screen is displayed and tappable "Activate Offer" button. “X" button on top-left
 does nothing
 
 Popup screen
+
 When tapping “Activate Offer” button, app displays simple popup in the center of the screen and
 making background darker. Popup contains “Great!” label with shadow of some color and label
 describing at which time offer was accepted.
 
 General Requirements:
+
 • Project must be uploaded to GitHub and link to this project must be sent to us.
 • App MUST be written using UIKit (NOT SwiftUI).
 • App can be written in any architecture (mvc, mvp, mvvm, viper, etc.).
@@ -32,6 +37,7 @@ something does not fit.
 UI on your own.
 
 Countdown Timer Requirements:
+
 • Always show 4 boxes. [day]:[hour]:[minute]:[second]
 • Always display number with two digits. Example with 5 seconds: 5 is not correct - 05 is
 correct.
@@ -44,5 +50,6 @@ correct.
 (foreground).
 
 Popup Requirements:
+
 • Activation time in popup must be displayed in the same format as Countdown Timer. Example:
 00:00:03:15 - will be displayed as 03:15
