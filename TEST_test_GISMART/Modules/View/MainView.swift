@@ -42,25 +42,33 @@ final class MainView: UIView {
     /// Stack with countdown timer
     private lazy var timerStack = createTimerStack(spacing: 4)
     /// Label "For true music fans"
-    private lazy var forFansLabel = createLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFSemiBold(5.dynamicSize()))
+    private lazy var forFansLabel = createLabel(color: AppTheme.Colors.white,
+                                                font: AppTheme.Fonts.SFSemiBold(5.dynamicSize()))
     /// Label "90% OFF"
-    private lazy var saleLabel = createLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFHeavy(25.dynamicSize()))
+    private lazy var saleLabel = createLabel(color: AppTheme.Colors.white,
+                                             font: AppTheme.Fonts.SFHeavy(25.dynamicSize()))
     /// Label "LAST-MINUTE..."
-    private lazy var lastMinuteLabel = createLabel(color: AppTheme.Colors.white, font: AppTheme.Fonts.SFSemiBold(10.dynamicSize()))
+    private lazy var lastMinuteLabel = createLabel(color: AppTheme.Colors.white,
+                                                   font: AppTheme.Fonts.SFSemiBold(10.dynamicSize()))
     /// Label "Hundreds of songs in you pocket"
-    private lazy var hundredsLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(6.dynamicSize()))
+    private lazy var hundredsLabel = createLabel(color: AppTheme.Colors.lightGray,
+                                                 font: AppTheme.Fonts.SFRegular(6.dynamicSize()))
     /// Button activate offer
     private lazy var activateButton = createActivateButton()
     /// Label "Privacy"
-    private lazy var privacyLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
+    private lazy var privacyLabel = createLabel(color: AppTheme.Colors.lightGray,
+                                                font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
     /// Label "Restore"
-    private lazy var restoreLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
+    private lazy var restoreLabel = createLabel(color: AppTheme.Colors.lightGray,
+                                                font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
     /// Label "Terms"
-    private lazy var termsLabel = createLabel(color: AppTheme.Colors.lightGray, font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
+    private lazy var termsLabel = createLabel(color: AppTheme.Colors.lightGray,
+                                              font: AppTheme.Fonts.SFRegular(4.dynamicSize()))
     /// Stack with labels "Privacy", Restore", "Terms"
     private lazy var bottomStack = createTimerStack(spacing: 15)
     /// Label "X" does nothing
-    private lazy var xLabel = createLabel(color: AppTheme.Colors.gray, font: AppTheme.Fonts.SFRegular(10.dynamicSize()))
+    private lazy var xLabel = createLabel(color: AppTheme.Colors.gray,
+                                          font: AppTheme.Fonts.SFRegular(10.dynamicSize()))
     /// Label for install timerStack centerXAnchor
     private lazy var fakeLabel = createColonLabel()
     
@@ -111,9 +119,28 @@ extension MainView {
     }
     
     private func addViews() {
-        addSubviews(musicLogoImageView, timerStack, fakeLabel, forFansLabel, saleLabel, lastMinuteLabel, hundredsLabel, activateButton, bottomStack, xLabel)
-        timerStack.addArrangedSubviews(daysLabel, colonAfterDaysLabel, hoursLabel, colonAfterHoursLabel, minutesLabel, colonAfterMinutesLabel, secondsLabel)
-        bottomStack.addArrangedSubviews(privacyLabel, restoreLabel, termsLabel)
+        addSubviews(musicLogoImageView,
+                    timerStack,
+                    fakeLabel,
+                    forFansLabel,
+                    saleLabel,
+                    lastMinuteLabel,
+                    hundredsLabel,
+                    activateButton,
+                    bottomStack,
+                    xLabel)
+        
+        timerStack.addArrangedSubviews(daysLabel,
+                                       colonAfterDaysLabel,
+                                       hoursLabel,
+                                       colonAfterHoursLabel,
+                                       minutesLabel,
+                                       colonAfterMinutesLabel,
+                                       secondsLabel)
+        
+        bottomStack.addArrangedSubviews(privacyLabel,
+                                        restoreLabel,
+                                        termsLabel)
     }
     
     private func addConstraints() {
@@ -211,7 +238,10 @@ extension MainView {
     
     private func createActivateButton() -> UIButton {
         let button = GradientButton(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
-        button.addShadow(shadowColor: AppTheme.Colors.pink.cgColor, shadowOffset: CGSize(width: 0, height: 0), shadowOpacity: 20, shadowRadius: 20)
+        button.addShadow(shadowColor: AppTheme.Colors.pink.cgColor,
+                         shadowOffset: CGSize(width: 0, height: 0),
+                         shadowOpacity: 20,
+                         shadowRadius: 20)
         button.setTitle("ACTIVATE OFFER", for: .normal)
         button.addTarget(self, action: #selector(activateButtonTapped), for: .touchUpInside)
         button.setTitleColor(AppTheme.Colors.white, for: .normal)
@@ -232,8 +262,14 @@ extension MainView {
     
     /// Method to stop the timer in SceneDelegate.sceneWillResignActive, and start in SceneDelegate.sceneDidBecomeActive
     private func setupNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIScene.didActivateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIScene.willDeactivateNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didEnterBackground),
+                                               name: UIScene.didActivateNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterForeground),
+                                               name: UIScene.willDeactivateNotification,
+                                               object: nil)
     }
     /// Method to check need to enable animation in timer labels
     private func chechLabelAnimation(label: UILabel, value: String) {
@@ -282,11 +318,15 @@ extension MainView {
             timer?.invalidate()
             Constans.remainingTime = 0
         }
-       
-        chechLabelAnimation(label: secondsLabel, value: dateManager.getTime(seconds: Constans.remainingTime).seconds)
-        chechLabelAnimation(label: minutesLabel, value: dateManager.getTime(seconds: Constans.remainingTime).minutes)
-        chechLabelAnimation(label: hoursLabel, value: dateManager.getTime(seconds: Constans.remainingTime).hours)
-        chechLabelAnimation(label: daysLabel, value: Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat())
+        
+        chechLabelAnimation(label: secondsLabel,
+                            value: dateManager.getTime(seconds: Constans.remainingTime).seconds)
+        chechLabelAnimation(label: minutesLabel,
+                            value: dateManager.getTime(seconds: Constans.remainingTime).minutes)
+        chechLabelAnimation(label: hoursLabel,
+                            value: dateManager.getTime(seconds: Constans.remainingTime).hours)
+        chechLabelAnimation(label: daysLabel,
+                            value: Int(Constans.remainingTime/Constans.secondsInDay).daysLabelFormat())
         
         setValueToTimer()
     }

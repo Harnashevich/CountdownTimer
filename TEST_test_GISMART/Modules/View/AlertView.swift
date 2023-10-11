@@ -41,7 +41,8 @@ extension AlertView {
         let titleLabel = createTitleLabel()
         
         targetView.addSubview(alertView)
-        alertView.addSubviews(titleLabel, messageLabel)
+        alertView.addSubviews(titleLabel,
+                              messageLabel)
         
         self.backgroundView.alpha = Constans.backgroungAltpa
         self.alertView.center = targetView.center
