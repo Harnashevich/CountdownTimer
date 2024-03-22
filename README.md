@@ -1,4 +1,4 @@
-# TEST_GISMART
+# Countdown Timer
 
 ![imageTest](https://github.com/Harnashevich/TEST_GISMART/assets/84876109/0d5fb7be-9ce3-44d2-820f-610a5b800ca3)
 
