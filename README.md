@@ -2,19 +2,19 @@
 
 <img src="https://github.com/Harnashevich/TEST_GISMART/assets/84876109/0d5fb7be-9ce3-44d2-820f-610a5b800ca3" width="624" height="576">
 
-Technical Task
+Technical Task:
 
 Create app that shows some special offer/discount to user. After activating this offer, app displays
 popup screen with exact time when this offer was activated.
 
 
-Main Screen
+Main Screen:
 
 Displays image on the left, and main content on the right. Some labels, countdown timer which
 starts when app screen is displayed and tappable "Activate Offer" button. “X" button on top-left
 does nothing
 
-Popup screen
+Popup screen:
 
 When tapping “Activate Offer” button, app displays simple popup in the center of the screen and
 making background darker. Popup contains “Great!” label with shadow of some color and label
