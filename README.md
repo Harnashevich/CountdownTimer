@@ -1,6 +1,6 @@
 # Countdown Timer
 
-![imageTest](https://github.com/Harnashevich/TEST_GISMART/assets/84876109/0d5fb7be-9ce3-44d2-820f-610a5b800ca3)
+<img src="https://github.com/Harnashevich/TEST_GISMART/assets/84876109/0d5fb7be-9ce3-44d2-820f-610a5b800ca3" width="624" height="576">
 
 Technical Task
 
